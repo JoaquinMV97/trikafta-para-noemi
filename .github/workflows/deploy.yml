@@ -1,0 +1,59 @@
+name: Deploy
+
+on:
+  push:
+    branches: [astro, main]
+  schedule:
+    - cron: "0 12 * * *" # todos los días a las 6:00 a. m. (hora de CDMX)
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Publicar (${{ github.ref_name == 'main' && 'producción' || 'staging' }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    env:
+      ES_PROD: ${{ github.ref_name == 'main' }}
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v5
+
+      - name: Instalar Node (versión de .nvmrc)
+        uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Recuperar imágenes optimizadas
+        uses: actions/cache@v4
+        with:
+          path: node_modules/.astro
+          key: astro-${{ runner.os }}-${{ hashFiles('src/assets/**', 'src/content/**') }}
+          restore-keys: astro-${{ runner.os }}-
+
+      - name: Revisar tipos y errores
+        run: npm run check
+
+      - name: Compilar
+        run: npm run build
+        env:
+          PUBLIC_NOINDEX: ${{ env.ES_PROD == 'true' && 'false' || 'true' }}
+
+      - name: Subir a Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ env.ES_PROD == 'true' && secrets.PROD_FTP_SERVER || secrets.STAGING_FTP_SERVER }}
+          username: ${{ env.ES_PROD == 'true' && secrets.PROD_FTP_USERNAME || secrets.STAGING_FTP_USERNAME }}
+          password: ${{ env.ES_PROD == 'true' && secrets.PROD_FTP_PASSWORD || secrets.STAGING_FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./dist/
+          server-dir: ./

@@ -1,0 +1,30 @@
+---
+import Accesos from "../components/home/Accesos.astro";
+import Hero from "../components/home/Hero.astro";
+import ProyectoDestacado from "../components/home/ProyectoDestacado.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getProyectosVigentes } from "../lib/proyectos";
+
+import HistoriaResumen from "../components/home/HistoriaResumen.astro";
+import TratamientoResumen from "../components/home/TratamientoResumen.astro";
+import ComunidadResumen from "../components/home/ComunidadResumen.astro";
+import CierreDonacion from "../components/home/CierreDonacion.astro";
+import MiCancion from "../components/home/MiCancion.astro";
+import { CANCION } from "../data/site";
+
+const destacado = (await getProyectosVigentes()).find((p) => p.data.destacado);
+---
+
+<BaseLayout
+  title="Trikafta para Noemí"
+  description="Noemí Fuentes vive con fibrosis quística. Conoce su historia, qué es la FQ y cómo apoyar su campaña para acceder a Trikafta."
+>
+  <Hero />
+  {destacado && <ProyectoDestacado proyecto={destacado} />}
+  <Accesos />
+  <MiCancion videoId={CANCION.videoId} titulo={CANCION.titulo} />
+  <HistoriaResumen />
+  <TratamientoResumen />
+  <ComunidadResumen />
+  <CierreDonacion />
+</BaseLayout>

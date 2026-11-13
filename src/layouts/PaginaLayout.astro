@@ -1,0 +1,54 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow?: string;
+  actualizado?: Date;
+  fuentes?: { titulo: string; url: string }[];
+}
+
+const { title, description, eyebrow, actualizado, fuentes = [] } = Astro.props;
+const fecha = actualizado?.toLocaleDateString("es-MX", { year: "numeric", month: "long" });
+---
+
+<BaseLayout title={title} description={description}>
+  <header class="border-b-[1.5px] border-line bg-tint">
+    <div class="mx-auto max-w-3xl px-6 py-14">
+      <nav aria-label="Ruta" class="text-sm text-subtle">
+        <a href="/" class="hover:underline">Inicio</a> / <span aria-current="page">{title}</span>
+      </nav>
+      {eyebrow && (
+        <p class="mt-6 inline-block -rotate-2 rounded-full border-2 border-ink bg-white px-4 py-1 text-sm font-bold">
+          {eyebrow}
+        </p>
+      )}
+      <h1 class="mt-4 font-display text-5xl font-extrabold tracking-tight">{title}</h1>
+      <p class="mt-4 text-xl text-muted">{description}</p>
+    </div>
+  </header>
+
+  <div class="mx-auto max-w-3xl px-6 py-14">
+    <slot name="antes" />
+
+    <div class="prose prose-lg max-w-none prose-headings:font-display prose-headings:tracking-tight">
+      <slot />
+    </div>
+
+    <slot name="despues" />
+
+    {fuentes.length > 0 && (
+      <section class="mt-14 border-t-[1.5px] border-line pt-8">
+        <h2 class="text-sm font-bold tracking-wider text-primary-strong uppercase">Fuentes</h2>
+        <ul class="mt-3 space-y-1.5 text-base text-muted">
+          {fuentes.map((f) => (
+            <li><a href={f.url} target="_blank" rel="noopener" class="underline underline-offset-4 hover:text-ink">{f.titulo}</a></li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {fecha && <p class="mt-8 text-sm text-subtle">Última actualización: {fecha}</p>}
+  </div>
+</BaseLayout>

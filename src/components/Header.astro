@@ -1,0 +1,82 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
+import { navLinks } from "../data/site";
+import DonateButton from "./DonateButton.astro";
+
+const current = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<header
+    class="sticky top-0 z-10 border-b border-line-soft bg-surface/95 backdrop-blur"
+>
+    <div
+        class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3"
+    >
+        <a
+            href="/"
+            class="flex shrink-0 items-center gap-3 font-display text-xl font-extrabold"
+        >
+            <Image src={logo} alt="" width={48} height={48} densities={[1, 2]} class="rounded-full" />
+            #TrikaftaParaNoemí
+        </a>
+
+        <!-- Escritorio: resolucion xl (1280px) -->
+        <nav
+            aria-label="Principal"
+            class="hidden items-center gap-5 text-base xl:flex"
+        >
+            {
+                navLinks.map((links) => (
+                    <a
+                        href={links.href}
+                        aria-current={
+                            current === links.href ? "page" : undefined
+                        }
+                        class="whitespace-nowrap hover:text-primary-strong aria-[current=page]:font-bold aria-[current=page]:underline aria-[current=page]:decoration-sun aria-[current=page]:decoration-4 aria-[current=page]:underline-offset-8"
+                    >
+                        {links.label}
+                    </a>
+                ))
+            }
+            <DonateButton />
+        </nav>
+
+        <!-- Móvil: menu desplegable sin javascript -->
+        <details class="relative xl:hidden">
+            <summary
+                aria-label="Abrir menú"
+                class="flex size-11 cursor-pointer list-none items-center justify-center rounded-xl border-2 border-ink bg-white [&::-webkit-details-marker]:hidden"
+            >
+                <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    aria-hidden="true"
+                >
+                    <path d="M4 7h16M4 12h16M4 17h16"></path>
+                </svg>
+            </summary>
+            <nav
+                aria-label="Principal"
+                class="absolute right-0 top-14 flex w-64 flex-col gap-1 rounded-2xl border-2 border-ink bg-white p-3 shadow-hard"
+            >
+                {
+                    navLinks.map((link) => (
+                        <a
+                            href={link.href}
+                            class="rounded-lg px-3 py-2 hover:bg-tint"
+                        >
+                            {link.label}
+                        </a>
+                    ))
+                }
+                <DonateButton class="mt-2" />
+            </nav>
+        </details>
+    </div>
+</header>

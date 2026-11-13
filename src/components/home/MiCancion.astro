@@ -1,0 +1,58 @@
+---
+interface Props {
+  videoId: string;
+  titulo: string;
+}
+
+const { videoId, titulo } = Astro.props;
+const miniatura = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+const enlace = `https://www.youtube.com/watch?v=${videoId}`;
+---
+
+<section class="mx-auto max-w-6xl px-6 py-16">
+  <div class="grid items-center gap-10 lg:grid-cols-2">
+    <div>
+      <p class="inline-block -rotate-2 rounded-full border-2 border-ink bg-pop px-4 py-1 text-sm font-bold">La canción de la campaña</p>
+      <h2 class="mt-4 font-display text-4xl font-bold tracking-tight lg:text-5xl">“{titulo}”</h2>
+      <p class="mt-4 text-muted">
+        Una canción que habla de lo que significa vivir con
+        fibrosis quística.
+      </p>
+      <a href={enlace} target="_blank" rel="noopener" class="mt-6 inline-block font-bold text-primary-strong underline-offset-4 hover:underline">
+        Verla en YouTube →
+      </a>
+    </div>
+
+    <div
+      data-youtube={videoId}
+      data-titulo={titulo}
+      class="relative aspect-video overflow-hidden rounded-3xl border-2 border-ink bg-ink shadow-hard"
+    >
+      <button type="button" aria-label={`Reproducir “${titulo}”`} class="group absolute inset-0 cursor-pointer">
+        <img src={miniatura} alt="" width="480" height="360" loading="lazy" class="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100" />
+        <span class="absolute inset-0 m-auto flex size-20 items-center justify-center rounded-full border-2 border-ink bg-primary text-white shadow-hard transition-transform group-hover:scale-110">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>
+        </span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-youtube]").forEach((contenedor) => {
+    const boton = contenedor.querySelector("button");
+    boton?.addEventListener(
+      "click",
+      () => {
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube-nocookie.com/embed/${contenedor.dataset.youtube}?autoplay=1`;
+        iframe.title = contenedor.dataset.titulo ?? "Video de YouTube";
+        iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+        iframe.className = "absolute inset-0 h-full w-full";
+        contenedor.replaceChildren(iframe);
+      },
+      { once: true },
+    );
+  });
+</script>

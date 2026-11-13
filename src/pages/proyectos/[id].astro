@@ -1,0 +1,34 @@
+---
+import { getCollection, render } from "astro:content";
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const proyectos = await getCollection("proyectos");
+  return proyectos.map((proyecto) => ({
+    params: { id: proyecto.id },
+    props: { proyecto },
+  }));
+}
+
+const { proyecto } = Astro.props;
+const { titulo, resumen, imagen, imagenAlt, enlace, textoEnlace } = proyecto.data;
+const { Content } = await render(proyecto);
+---
+
+<BaseLayout title={titulo} description={resumen}>
+  <article class="mx-auto max-w-3xl px-6 py-16">
+    <a href="/proyectos" class="font-bold text-primary-strong">← Todos los proyectos</a>
+    <h1 class="mt-6 font-display text-5xl font-extrabold tracking-tight">{titulo}</h1>
+    <p class="mt-4 text-xl text-muted">{resumen}</p>
+    {imagen && <Image src={imagen} alt={imagenAlt ?? ""} widths={[800, 1200]} sizes="(min-width: 768px) 720px, 100vw" class="mt-8 rounded-3xl" />}
+    <div class="prose mt-8">
+      <Content />
+    </div>
+    {enlace && (
+      <a href={enlace} target="_blank" rel="noopener" class="mt-8 inline-flex min-h-14 items-center rounded-2xl bg-primary px-7 text-lg font-bold text-white">
+        {textoEnlace}
+      </a>
+    )}
+  </article>
+</BaseLayout>

@@ -1,0 +1,42 @@
+---
+import Polaroid from "../Polaroid.astro";
+import neumologia from "../../assets/noemi/neumologia.jpg";
+---
+
+<section class="mx-auto max-w-6xl px-6 py-16">
+  <div class="flex flex-wrap items-center gap-12 rounded-[2rem] border-2 border-ink bg-white p-8 lg:p-12">
+    <div class="relative w-full max-w-xs shrink-0">
+      <Polaroid
+        src={neumologia}
+        alt="Noemí con cubrebocas en su cita de neumología"
+        tilt="slight"
+      />
+      <span class="absolute -top-3 -right-3 rotate-6 rounded-full border-2 border-ink bg-pop px-3 py-1 text-sm font-bold">
+        mi día a día
+      </span>
+    </div>
+    <div class="min-w-0 flex-1 basis-80">
+      <p class="inline-block rounded-full bg-ink px-3 py-1 text-sm font-bold text-white">
+        Mi historia
+      </p>
+      <blockquote class="mt-4 font-display text-3xl leading-tight font-medium lg:text-4xl">
+        “La empatía y la esperanza son dos partes fundamentales que me ponen de
+        pie todos los días para seguir luchando por mis sueños.”
+      </blockquote>
+      <p class="mt-6 text-muted">
+        En 2026 me gradué como licenciada en Música por la UABC. Mi meta es
+        construir un mejor futuro a través de la educación musical y de la
+        conciencia sobre la fibrosis quística.
+      </p>
+      <p class="mt-3 text-muted">
+        Con tu ayuda puedo cubrir el costo de Trikafta y seguir adelante.
+      </p>
+      <a
+        href="/mi-historia"
+        class="mt-8 inline-flex min-h-12 items-center rounded-2xl border-2 border-ink px-6 font-bold"
+      >
+        Leer mi historia completa
+      </a>
+    </div>
+  </div>
+</section>

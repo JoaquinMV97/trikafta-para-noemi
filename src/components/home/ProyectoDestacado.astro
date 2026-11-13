@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  proyecto: CollectionEntry<"proyectos">;
+}
+
+const { proyecto } = Astro.props;
+const { titulo, resumen, tipo } = proyecto.data;
+---
+
+<section class="mx-auto max-w-6xl px-6 pt-16">
+  <a
+    href={`/proyectos/${proyecto.id}`}
+    class="group flex flex-wrap items-center justify-between gap-6 rounded-3xl border-2 border-ink bg-white p-6 shadow-hard sm:p-8"
+  >
+    <div class="max-w-2xl">
+      <p class="inline-block -rotate-2 rounded-full bg-pop px-3 py-0.5 text-sm font-bold">
+        {proyecto.data.estado === "proximamente" ? "Próximamente" : "Nuevo"} ·{" "}
+        <span class="capitalize">{tipo}</span>
+      </p>
+      <h2 class="mt-3 font-display text-3xl font-bold">{titulo}</h2>
+      <p class="mt-2 text-muted">{resumen}</p>
+    </div>
+    <span class="inline-flex min-h-12 items-center rounded-2xl bg-primary px-6 font-bold whitespace-nowrap text-white group-hover:bg-primary-strong">
+      Ver detalles →
+    </span>
+  </a>
+</section>

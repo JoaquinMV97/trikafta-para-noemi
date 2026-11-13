@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    proyecto: CollectionEntry<"proyectos">;
+}
+
+const { proyecto } = Astro.props;
+const { titulo, tipo, resumen, imagen, imagenAlt, estado } = proyecto.data;
+---
+
+<a
+    href={`/proyectos/${proyecto.id}`}
+    class="flex flex-col overflow-hidden rounded-3xl border-[1.5px] border-line bg-white transition-shadow hover:shadow-hard"
+>
+    {imagen && (
+        <Image
+            src={imagen}
+            alt={imagenAlt ?? ""}
+            widths={[400, 800, 1200]}
+            sizes="(min-width: 768px) 720px, 100vw"
+            class:list={[
+                "mt-8 rounded-3xl",
+                proyecto.data.imagenTipo === "logo"
+                    ? "mx-auto w-64 bg-tint-soft p-6"
+                    : "w-full",
+            ]}
+        />
+    )}
+    <div class="flex flex-1 flex-col gap-2 p-6">
+        {estado === "proximamente" && (
+            <span class="self-start rounded-full border-2 border-ink bg-white px-3 py-0.5 text-sm font-bold">
+                Próximamente
+            </span>
+        )}
+        <span class="self-start rounded-full bg-pop px-3 py-0.5 text-sm font-bold capitalize">
+            {tipo}
+        </span>
+        <h3 class="font-display text-2xl font-bold">{titulo}</h3>
+        <p class="text-muted">{resumen}</p>
+        <span class="mt-auto pt-2 font-bold text-primary-strong">
+            Ver más →
+        </span>
+    </div>
+</a>

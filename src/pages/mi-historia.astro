@@ -1,0 +1,37 @@
+---
+import { getEntry, render } from "astro:content";
+import PaginaLayout from "../layouts/PaginaLayout.astro";
+import Polaroid from "../components/Polaroid.astro";
+import DonateButton from "../components/DonateButton.astro";
+import sonrisa from "../assets/noemi/sonrisa.jpg";
+import saludo from "../assets/noemi/saludo.jpg";
+import nebulizador from "../assets/noemi/nebulizador.jpg";
+import neumologia from "../assets/noemi/neumologia.jpg";
+
+const pagina = await getEntry("paginas", "mi-historia");
+if (!pagina) throw new Error("Falta src/content/paginas/mi-historia.md");
+
+const { Content } = await render(pagina);
+const { titulo, descripcion, eyebrow, actualizado, fuentes } = pagina.data;
+---
+
+<PaginaLayout
+  title={titulo}
+  description={descripcion}
+  eyebrow={eyebrow}
+  actualizado={actualizado}
+  fuentes={fuentes}
+>
+  <div slot="antes" class="mb-14 grid grid-cols-2 gap-6 sm:grid-cols-4">
+    <Polaroid src={sonrisa} alt="Noemí Fuentes sonriendo" tilt="left" />
+    <Polaroid src={nebulizador} alt="Noemí usando su nebulizador" tilt="right" />
+    <Polaroid src={neumologia} alt="Noemí en su cita de neumología" tilt="slight" />
+    <Polaroid src={saludo} alt="Noemí sonriendo y haciendo la señal de paz" tilt="right" />
+  </div>
+
+  <Content />
+
+  <div slot="despues" class="mt-12 flex flex-wrap gap-4">
+    <DonateButton label="Donar en GoFundMe" size="lg" />
+  </div>
+</PaginaLayout>

@@ -1,0 +1,27 @@
+---
+import { getEntry, render } from "astro:content";
+import PaginaLayout from "../layouts/PaginaLayout.astro";
+
+const pagina = await getEntry("paginas", "que-es-la-fq");
+if (!pagina) throw new Error("Falta src/content/paginas/que-es-la-fq.md");
+
+
+const { Content, headings } = await render(pagina);
+const indice = headings.filter((h) => h.depth === 2);
+const { titulo, descripcion, actualizado, fuentes} = pagina.data;
+---
+
+<PaginaLayout title={titulo} description={descripcion} actualizado={actualizado} fuentes={fuentes}>
+  <nav slot="antes" aria-label="En esta página" class="mb-12 rounded-3xl border-[1.5px] border-line bg-white p-6">
+    <p class="text-sm font-bold tracking-wider text-primary-strong uppercase">En esta página</p>
+    <ol class="mt-3 grid gap-x-8 gap-y-1.5 sm:grid-cols-2">
+      {indice.map((h) => (
+        <li>
+          <a href={`#${h.slug}`} class="underline-offset-4 hover:underline">{h.text}</a>
+        </li>
+      ))}
+    </ol>
+  </nav>
+
+  <Content />
+</PaginaLayout>

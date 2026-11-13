@@ -1,0 +1,61 @@
+@import "tailwindcss";
+@source "../";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-*: initial;
+
+  /* Marca */
+  --color-primary: #5B2A86;        /* botones, acentos */
+  --color-primary-strong: #4A2270; /* texto morado sobre fondos claros */
+  --color-accent: #F2B33D;         /* ámbar: detalles, CTA secundario */
+
+  /* Neutros */
+  --color-ink: #231A2C;            /* texto principal */
+  --color-muted: #4F4558;          /* párrafos secundarios */
+  --color-subtle: #5D5366;         /* notas, etiquetas */
+  --color-surface: #FBF8FC;        /* fondo de página */
+  --color-tint: #F1E8F7;           /* fondo lavanda (hero) */
+  --color-tint-soft: #F7F2FA;      /* tarjetas */
+  --color-line: #C9B6DB;           /* bordes de tarjetas (visible en cualquier pantalla) */
+  --color-line-soft: #E6DCEE;      /* separadores sutiles (header) */
+  --color-sun: #F4C365;            /* SOLO botones de donar */
+  --color-pop: #B99AE8;            /* etiquetas tipo sticker */
+  --color-on-dark: #E9E1EF;        /* texto sobre fondo oscuro (footer) */
+  --color-on-dark-muted: #BDB2C6;  /* texto secundario sobre oscuro */
+
+  --shadow-hard: 4px 4px 0 var(--color-ink); /* sombra sólida estilo D */
+  --color-white: #FFFFFF;
+
+  /* Tipografía */
+  --font-display: "Bricolage Grotesque Variable", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-ink font-body text-lg leading-relaxed;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  :target {
+    scroll-margin-top: 6rem;
+  }
+}
+
+.prose {
+  --tw-prose-body: var(--color-ink);
+  --tw-prose-headings: var(--color-ink);
+  --tw-prose-lead: var(--color-muted);
+  --tw-prose-links: var(--color-primary-strong);
+  --tw-prose-bold: var(--color-ink);
+  --tw-prose-counters: var(--color-primary);
+  --tw-prose-bullets: var(--color-primary);
+  --tw-prose-hr: var(--color-line);
+  --tw-prose-quotes: var(--color-ink);
+  --tw-prose-quote-borders: var(--color-pop);
+  --tw-prose-captions: var(--color-subtle);
+  --tw-prose-th-borders: var(--color-line);
+  --tw-prose-td-borders: var(--color-line-soft);
+}

@@ -1,0 +1,13 @@
+RewriteEngine On
+
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+RewriteRule ^inicio/?$ / [R=301,L]
+RewriteRule ^seccion/trikafta/?$ /mi-historia/ [R=301,L]
+RewriteRule ^seccion/fundaciones-asociaciones/?$ /comunidad/ [R=301,L]
+RewriteRule ^seccion/proyectos/?$ /proyectos/ [R=301,L]
+RewriteRule ^seccion/contacto/?$ /contacto/ [R=301,L]
+
+
+ErrorDocument 404 /404.html

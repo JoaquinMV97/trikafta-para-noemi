@@ -1,0 +1,56 @@
+---
+const accesos = [
+  {
+    href: "/que-es-la-fq",
+    titulo: "¿Qué es la FQ?",
+    texto: "Una enfermedad genética que afecta principalmente a los pulmones y al sistema digestivo.",
+    cta: "Aprender más",
+    icono: "pulmones",
+  },
+  {
+    href: "/mi-tratamiento",
+    titulo: "Mi tratamiento",
+    texto: "Los medicamentos, el equipo médico y los cuidados que forman parte de mi día a día.",
+    cta: "Ver mi tratamiento",
+    icono: "capsula",
+  },
+  {
+    href: "/comunidad",
+    titulo: "Comunidad",
+    texto: "Fundaciones, asociaciones y otras personas que también luchan por su tratamiento.",
+    cta: "Conocerlas",
+    icono: "personas",
+  },
+] as const;
+
+const iconos = {
+  pulmones: '<path d="M12 4v8"/><path d="M8.5 7C6 7 3.5 10 3.5 15c0 3 1 5 3 5s3.5-1.5 3.5-4V9"/><path d="M15.5 7c2.5 0 5 3 5 8 0 3-1 5-3 5s-3.5-1.5-3.5-4V9"/>',
+  capsula: '<rect x="3" y="8.5" width="18" height="7" rx="3.5" transform="rotate(-40 12 12)"/><path d="m9.3 9 5.4 6"/>',
+  personas: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.5 0 4.5 2 4.5 4.5"/>',
+};
+---
+
+<section class="mx-auto max-w-6xl px-6 py-20">
+  <div class="mb-10 grid gap-6 lg:grid-cols-2 lg:items-end">
+    <h2 class="font-display text-4xl font-bold tracking-tight lg:text-5xl">Informar también es cuidar.</h2>
+    <p class="text-muted">
+      Este sitio nace para hablar de una situación urgente en México: el desconocimiento de la
+      fibrosis quística (FQ) y de sus complicaciones.
+    </p>
+  </div>
+
+  <div class="grid gap-5 md:grid-cols-3">
+    {accesos.map((a) => (
+      <a href={a.href} class="flex flex-col gap-3 rounded-3xl border-[1.5px] border-line bg-white p-8 transition-shadow hover:shadow-hard">
+        <span class="flex size-13 items-center justify-center rounded-2xl bg-tint text-primary-strong">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <Fragment set:html={iconos[a.icono]} />
+          </svg>
+        </span>
+        <h3 class="font-display text-2xl font-bold">{a.titulo}</h3>
+        <p class="text-muted">{a.texto}</p>
+        <span class="mt-auto pt-2 font-bold text-primary-strong">{a.cta} →</span>
+      </a>
+    ))}
+  </div>
+</section>

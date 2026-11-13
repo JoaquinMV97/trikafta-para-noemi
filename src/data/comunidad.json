@@ -1,0 +1,143 @@
+[
+  {
+    "id": "fundacion-besitos-salados",
+    "nombre": "Fundación Besitos Salados",
+    "tipo": "fundación",
+    "descripcion": "Asociación sin fines de lucro que busca mejorar la calidad y la expectativa de vida de niños y jóvenes con fibrosis quística.",
+    "redes": {
+      "web": "https://fibrosisquistica.com.mx/",
+      "facebook": "https://www.facebook.com/fundacion.besitos"
+    },
+    "verificado": "2026-10-30"
+  },
+  {
+    "id": "asociacion-mexicana-fq",
+    "nombre": "Asociación Mexicana de Fibrosis Quística",
+    "tipo": "asociación",
+    "descripcion": "Portales de información para niños, jóvenes, adultos y familiares de personas con fibrosis quística.",
+    "redes": {
+      "web": "https://fibrosisquistica.org.mx/",
+      "facebook": "https://www.facebook.com/AMFQMX/",
+      "x": "https://twitter.com/AMFQMX",
+      "youtube": "https://www.youtube.com/user/AMFQAC"
+    },
+    "verificado": "2026-10-30"
+  },
+  {
+    "id": "chicas-fq-mx",
+    "nombre": "Chicas FQ Mx",
+    "tipo": "grupo",
+    "descripcion": "Mujeres adultas mexicanas que viven con fibrosis quística.",
+    "redes": {
+      "facebook": "https://www.facebook.com/chicasfqmx",
+      "instagram": "https://www.instagram.com/chicasfqmx/",
+      "tiktok": "https://www.tiktok.com/@chicas_fq_mx"
+    },
+    "verificado": "2026-10-30"
+  },
+  {
+    "id": "fq-tabasco",
+    "nombre": "Fibrosis Quística FQ Tabasco (Andrea Sofía)",
+    "tipo": "grupo",
+    "descripcion": "Familia FQ Tabasco: un espacio para ayudarnos con cambios de medicamentos, suplementos, compra, venta y donación.",
+    "redes": {
+      "facebook": "https://www.facebook.com/fibrosis.quistica.fq.tabasco"
+    },
+    "verificado": "2026-10-30"
+  },
+  {
+    "id": "fibrosis-quistica-b-c",
+    "nombre": "Fibrosis Quística B.C.",
+    "tipo": "grupo",
+    "descripcion": "Familias y pacientes con fibrosis quística que viven en Baja California: bienvenidos a la familia FQ.",
+    "redes": {
+      "facebook": "https://www.facebook.com/share/g/1KffXoNdD4/"
+    },
+    "verificado": "2026-11-05"
+  },
+  {
+    "id": "respirando-juntos-mariana-proa",
+    "nombre": "Respirando juntos por Mariana Proa",
+    "tipo": "campaña",
+    "descripcion": "Mariana comparte su vida con fibrosis quística y su avance médico con Trikafta.",
+    "redes": {
+      "facebook": "https://www.facebook.com/RespirandojuntosporMarianaProa",
+      "instagram": "https://www.instagram.com/respirandojuntospormariana/",
+      "tiktok": "https://www.tiktok.com/@respirandojuntos"
+    },
+    "verificado": "2026-10-30"
+  },
+  {
+    "id": "todos-x-dani",
+    "nombre": "Todos X Dani",
+    "tipo": "campaña",
+    "descripcion": "Daniel Guerrero busca apoyo para su tratamiento con Trikafta.",
+    "redes": {
+      "facebook": "https://www.facebook.com/share/16UCtjqaWT/",
+      "instagram": "https://www.instagram.com/todosxdani.trikafta/"
+    },
+    "verificado": "2026-10-30"
+  },
+  {
+    "id": "trikafta-para-juanito",
+    "nombre": "Trikafta para Juanito FQ",
+    "tipo": "campaña",
+    "descripcion": "Campaña de apoyo para el tratamiento de Juan Carlos.",
+    "redes": {
+      "facebook": "https://www.facebook.com/profile.php?id=100090849197702",
+      "instagram": "https://www.instagram.com/trikaftaparajuanito/",
+      "tiktok": "https://www.tiktok.com/@trikaftaparajuanito"
+    },
+    "verificado": "2026-10-30"
+  },
+  {
+    "id": "un-respiro-para-iker",
+    "nombre": "Un Respiro para Iker André F.Q.",
+    "tipo": "campaña",
+    "descripcion": "Iker André comparte su historia y su lucha diaria contra la fibrosis quística.",
+    "redes": {
+      "facebook": "https://www.facebook.com/profile.php?id=61569518283725"
+    },
+    "verificado": "2026-10-30"
+  },
+  {
+    "id": "luchando-con-esperanza",
+    "nombre": "Luchando con Esperanza",
+    "tipo": "campaña",
+    "descripcion": "Un respiro para Karyme.",
+    "redes": {
+      "facebook": "https://www.facebook.com/profile.php?id=61554203233283"
+    },
+    "verificado": "2026-10-30"
+  },
+  {
+    "id": "sonrisas-fq",
+    "nombre": "Sonrisas F.Q.",
+    "tipo": "campaña",
+    "descripcion": "Una chica en busca de sus sueños con una enfermedad rara. Síguela y acompáñala en esta aventura.",
+    "redes": {
+      "facebook": "https://www.facebook.com/profile.php?id=100071781555291"
+    },
+    "verificado": "2026-10-30"
+  },
+  {
+    "id": "trikafta-para-xitlaly",
+    "nombre": "Trikafta para Xitlaly",
+    "tipo": "campaña",
+    "descripcion": "Página para recibir apoyo en la campaña de medicamento.",
+    "redes": {
+      "facebook": "https://www.facebook.com/profile.php?id=61550334024554"
+    },
+    "verificado": "2026-10-30"
+  },
+  {
+    "id": "trikafta-para-michelle",
+    "nombre": "Trikafta para Michelle México",
+    "tipo": "campaña",
+    "descripcion": "Página de apoyo para que Michi pueda adquirir su tratamiento.",
+    "redes": {
+      "facebook": "https://www.facebook.com/indiraadriana"
+    },
+    "verificado": "2026-10-30"
+  }
+]

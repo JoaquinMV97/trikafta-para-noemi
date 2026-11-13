@@ -1,0 +1,59 @@
+---
+import Polaroid from "../Polaroid.astro";
+import DonateButton from "../DonateButton.astro";
+import nebulizador from "../../assets/noemi/nebulizador.jpg";
+import saludo from "../../assets/noemi/saludo.jpg";
+---
+
+<section class="overflow-hidden bg-tint">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 px-6 py-12 lg:grid-cols-2 lg:py-20">
+        <div>
+            <p class="mb-6 inline-block -rotate-2 rounded-full border-2 border-ink bg-white px-4 py-1 text-sm font-bold">
+                Hola, soy Noemí
+            </p>
+            <h1 class="font-display text-5xl leading-[1.04] font-extrabold tracking-tight text-balance lg:text-7xl">
+                Ayúdame a sonreír en cada{" "}
+                <span class="inline-block -rotate-[1.5deg] rounded-2xl bg-primary px-3 pb-1 text-white">
+                    respiro.
+                </span>
+            </h1>
+            <p class="mt-6 text-xl">
+                Vivo con fibrosis quística, una enfermedad genética que no tiene
+                cura.
+            </p>
+            <p class="mt-3 max-w-prose text-muted">
+                Trikafta, un modulador genético, puede ayudarme a vivir estable,
+                sin hospitalizaciones ni cirugías de emergencia. Es muy costoso
+                y debo tomarlo de por vida.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-4">
+                <DonateButton label="Donar en GoFundMe" size="lg" />
+                <a
+                    href="/mi-historia"
+                    class="inline-flex min-h-14 items-center rounded-2xl border-2 border-ink px-7 text-lg font-bold"
+                >
+                    Conoce mi historia
+                </a>
+            </div>
+        </div>
+
+        <div class="relative order-first mx-auto aspect-[6/5] w-full max-w-md lg:order-last">
+            <Polaroid
+                src={saludo}
+                alt="Noemí sonriendo y haciendo la señal de paz con la mano"
+                tilt="left"
+                class="absolute top-8 left-0 w-[46%]"
+            />
+            <Polaroid
+                src={nebulizador}
+                alt="Noemí Fuentes usando su nebulizador"
+                tilt="right"
+                eager
+                class="absolute top-0 right-0 w-[54%]"
+            />
+            <p class="absolute bottom-2 left-1/4 rotate-3 rounded-full border-2 border-ink bg-pop px-4 py-2 text-sm font-bold">
+                Campaña activa en GoFundMe
+            </p>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ComunidadCard from "../components/ComunidadCard.astro";
+
+const todos = await getCollection("comunidad");
+const organizaciones = todos.filter((i) => ["fundación", "asociación"].includes(i.data.tipo));
+const personas = todos.filter((i) => ["grupo", "campaña"].includes(i.data.tipo));
+---
+
+<BaseLayout
+  title="Comunidad"
+  description="Fundaciones, asociaciones, grupos y campañas que acompañan a personas con fibrosis quística en México."
+>
+  <section class="mx-auto max-w-6xl px-6 py-16">
+    <h1 class="font-display text-5xl font-extrabold tracking-tight">No estás solo(a)</h1>
+    <p class="mt-4 max-w-2xl text-lg text-muted">
+      Estas iniciativas trabajan para informar, acompañar y promover el acceso a tratamientos que
+      pueden cambiar vidas. Te invito a conocerlas y compartirlas: difundir también es una forma de ayudar.
+    </p>
+
+    <h2 class="mt-14 font-display text-3xl font-bold">Fundaciones y asociaciones</h2>
+    <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {organizaciones.map((item) => <ComunidadCard item={item} />)}
+    </div>
+
+    <h2 class="mt-14 font-display text-3xl font-bold">Grupos y campañas</h2>
+    <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {personas.map((item) => <ComunidadCard item={item} />)}
+    </div>
+  </section>
+</BaseLayout>

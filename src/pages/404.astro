@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Página no encontrada" description="La página que buscas no existe o cambió de lugar.">
+  <section class="mx-auto max-w-2xl px-6 py-24 pt-6 text-center">
+    <p class="inline-block -rotate-2 rounded-full border-2 border-ink bg-pop px-4 py-1 text-sm font-bold">Error 404</p>
+    <h1 class="mt-6 font-display text-5xl font-extrabold tracking-tight">Esta página no existe</h1>
+    <p class="mt-4 text-lg text-muted">Puede que el enlace esté mal escrito o que la página haya cambiado de lugar.</p>
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
+      <a href="/" class="inline-flex min-h-12 items-center rounded-2xl bg-primary px-6 font-bold text-white">Ir al inicio</a>
+      <a href="/que-es-la-fq" class="inline-flex min-h-12 items-center rounded-2xl border-2 border-ink px-6 font-bold">¿Qué es la FQ?</a>
+    </div>
+  </section>
+</BaseLayout>

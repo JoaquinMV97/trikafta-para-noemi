@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+import ComunidadCard from "../ComunidadCard.astro";
+
+const comunidad = await getCollection("comunidad");
+const muestra = comunidad.slice(0, 3);
+---
+
+<section class="mx-auto max-w-6xl px-6 py-20">
+  <div class="mb-10 grid gap-6 lg:grid-cols-2 lg:items-end">
+    <h2 class="font-display text-4xl font-bold tracking-tight lg:text-5xl">No estás solo(a)</h2>
+    <p class="text-muted">
+      Fundaciones, asociaciones y campañas que informan, acompañan y promueven el acceso a tratamientos.
+    </p>
+  </div>
+  <div class="grid gap-5 md:grid-cols-3">
+    {muestra.map((item) => <ComunidadCard item={item} />)}
+  </div>
+  <a href="/comunidad" class="mt-8 inline-block font-bold text-primary-strong">
+    Ver las {comunidad.length} fundaciones y campañas →
+  </a>
+</section>

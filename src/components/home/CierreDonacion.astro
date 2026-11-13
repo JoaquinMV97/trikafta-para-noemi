@@ -1,0 +1,64 @@
+---
+import DonateButton from "../DonateButton.astro";
+---
+
+<section class="border-y-[1.5px] border-line bg-tint">
+  <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-8 px-6 py-20">
+    <div class="max-w-2xl">
+      <h2 class="font-display text-4xl leading-tight font-extrabold tracking-tight lg:text-5xl">
+        Toda ayuda, por pequeña que sea, significa un mundo para mí.
+      </h2>
+      <p class="mt-4 text-xl">Y si hoy no puedes donar, compartir también es una forma de ayudar.</p>
+    </div>
+    <div class="flex flex-wrap gap-4">
+      <DonateButton label="Donar en GoFundMe" size="lg" />
+      <button
+        type="button"
+        data-compartir
+        class="inline-flex min-h-14 cursor-pointer items-center gap-2 rounded-2xl border-2 border-ink bg-white px-7 text-lg font-bold shadow-hard"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" />
+          <path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4" />
+        </svg>
+        <span data-compartir-texto aria-live="polite">Compartir</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const boton = document.querySelector<HTMLButtonElement>("[data-compartir]");
+  const texto = document.querySelector<HTMLSpanElement>("[data-compartir-texto]");
+
+  function mostrar(mensaje: string) {
+    if (!texto) return;
+    texto.textContent = mensaje;
+    setTimeout(() => (texto.textContent = "Compartir"), 3000);
+  }
+
+  boton?.addEventListener("click", async () => {
+    const datos = {
+      title: "Trikafta para Noemí",
+      text: "Ayuda a Noemí a sonreír en cada respiro.",
+      url: window.location.origin,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(datos);
+      } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") return; // canceló: normal
+        console.error("No se pudo compartir:", error);
+      }
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(datos.url);
+      mostrar("¡Enlace copiado!");
+    } catch {
+       mostrar(datos.url.replace(/^https?:\/\//, ""));
+    }
+  });
+</script>

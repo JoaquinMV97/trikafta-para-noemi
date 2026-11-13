@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProyectoCard from "../../components/ProyectoCard.astro";
+import { getProyectosVigentes } from "../../lib/proyectos";
+
+const proyectos = await getProyectosVigentes();
+
+---
+
+<BaseLayout
+    title="Mis proyectos"
+    description="Cursos, podcast y proyectos de Noemí Fuentes para concientizar sobre la fibrosis quística en México."
+>
+    <section class="mx-auto max-w-6xl px-6 py-16">
+        <h1 class="font-display text-5xl font-extrabold tracking-tight">
+            Mis proyectos
+        </h1>
+        <p class="mt-4 max-w-2xl text-lg text-muted">
+            Además de mi tratamiento, sigo construyendo mis sueños. Aquí
+            comparto lo que estoy haciendo.
+        </p>
+        <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {proyectos.map((p) => <ProyectoCard proyecto={p} />)}
+        </div>
+    </section>
+</BaseLayout>
